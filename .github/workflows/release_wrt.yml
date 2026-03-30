@@ -33,6 +33,9 @@ env:
 
 jobs:
   build:
+    permissions:
+      actions: write
+      contents: read
     strategy:
       matrix:
         os: [ubuntu-24.04]
@@ -68,13 +71,6 @@ jobs:
 
       - name: Pre Clone
         run: ./wrt_core/pre_clone_action.sh ${{ inputs.model }}
-
-      - name: Delete Old Cache First
-        run: |
-          gh cache list --key ${{ matrix.os }}-${{ hashFiles('**/repo_flag') }}- --json key --jq '.[] | .key' | while read -r key; do
-            gh cache delete "$key" || true
-          done
-          echo "Old cache cleared"
 
       - name: Cache Dependencies
         uses: actions/cache@v5.0.2
