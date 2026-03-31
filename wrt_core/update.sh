@@ -21,8 +21,8 @@ if [[ "$BUILD_DIR" != /* ]]; then
 fi
 
 FEEDS_CONF="feeds.conf.default"
-GOLANG_REPO="https://github.com/sbwml/packages_lang_golang"
-GOLANG_BRANCH="25.x"
+GOLANG_REPO="https://github.com/kenzok8/golang"
+GOLANG_BRANCH="1.26"
 THEME_SET="argon"
 LAN_ADDR="192.168.1.1"
 

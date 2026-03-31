@@ -75,11 +75,6 @@ fi
 
 "$BASE_PATH/update.sh" "$REPO_URL" "$REPO_BRANCH" "$BUILD_DIR" "$COMMIT_HASH"
 
-if [[ -d "$BASE_PATH/../$BUILD_DIR/feeds/packages/lang/golang" ]]; then
-    rm -rf "$BASE_PATH/../$BUILD_DIR/feeds/packages/lang/golang"
-    git clone https://github.com/kenzok8/golang -b 1.26 "$BASE_PATH/../$BUILD_DIR/feeds/packages/lang/golang"
-fi
-
 apply_config
 remove_uhttpd_dependency
 
@@ -101,8 +96,6 @@ TARGET_DIR="$BASE_PATH/../$BUILD_DIR/bin/targets"
 if [[ -d $TARGET_DIR ]]; then
     find "$TARGET_DIR" -type f \( -name "*.bin" -o -name "*.manifest" -o -name "*efi.img.gz" -o -name "*.itb" -o -name "*.fip" -o -name "*.ubi" -o -name "*rootfs.tar.gz" \) -exec rm -f {} +
 fi
-
-export GOTOOLCHAIN=auto
 
 make download -j$(($(nproc) * 2))
 make -j$(($(nproc) + 1)) || make -j1 V=s
