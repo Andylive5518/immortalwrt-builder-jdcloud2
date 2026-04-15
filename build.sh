@@ -81,6 +81,12 @@ remove_uhttpd_dependency
 cd "$BASE_PATH/../$BUILD_DIR"
 make defconfig
 
+LAN_ADDR=$(grep '^LAN_ADDR=' "$BASE_PATH/update.sh" | cut -d'"' -f2)
+CFG_PATH="$BUILD_DIR/package/base-files/files/bin/config_generate"
+if [ -f "$CFG_PATH" ]; then
+    sed -i 's/192\.168\.[0-9]*\.[0-9]*/'"$LAN_ADDR"'/g' "$CFG_PATH"
+fi
+
 if grep -qE "^CONFIG_TARGET_x86_64=y" "$CONFIG_FILE"; then
     DISTFEEDS_PATH="$BASE_PATH/../$BUILD_DIR/package/emortal/default-settings/files/99-distfeeds.conf"
     if [ -d "${DISTFEEDS_PATH%/*}" ] && [ -f "$DISTFEEDS_PATH" ]; then
