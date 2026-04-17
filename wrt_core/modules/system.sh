@@ -523,7 +523,7 @@ install_pbr_ctcc() {
     if [ -f "$pbr_conf" ]; then
         if ! grep -q "pbr.user.ctcc" "$pbr_conf"; then
             echo "正在添加 PBR CTCC 配置条目..."
-            sed -i "/option path '\/usr\/share\/pbr\/pbr.user.cmcc6'/,/option enabled '0'/{
+            sed -i "/option path '\/usr\/share\/pbr\/pbr.user.ctcc'/,/option enabled '0'/{
                 /option enabled '0'/a\\
  \\
 config include\\
@@ -562,7 +562,7 @@ install_pbr_cucc() {
     if [ -f "$pbr_conf" ]; then
         if ! grep -q "pbr.user.cucc" "$pbr_conf"; then
             echo "正在添加 PBR CUCC 配置条目..."
-            sed -i "/option path '\/usr\/share\/pbr\/pbr.user.ctcc6'/,/option enabled '0'/{
+            sed -i "/option path '\/usr\/share\/pbr\/pbr.user.cucc'/,/option enabled '0'/{
                 /option enabled '0'/a\\
  \\
 config include\\

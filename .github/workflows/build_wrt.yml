@@ -60,7 +60,7 @@ jobs:
       - name: Set Build Date and Timezone
         run: |
           sudo -E timedatectl set-timezone "Asia/Shanghai"
-          export BUILD_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
+          export BUILD_DATE=$(TZ=UTC+8 date +"%y.%m.%d_%H.%M.%S")
           echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
 
       - name: Pre Clone
